@@ -19,6 +19,12 @@ With this grant, the client application doesn't need to store the username/passw
 This token can be stored and used to both refresh itself (with the refresh token) and to access protected resources.
 When you attempt to access a resource with an expired token, that token will automatically refresh itself. 
 
+To manually refresh a token:
+
+```java
+Token newToken = oldToken.refresh(client);
+```
+
 ### Assumptions
 
 - Your OAuth server delivers access tokens bundled with refresh tokens.
