@@ -10,7 +10,7 @@ Java OAuth2 clients are plentiful. Oddly enough, they all seem to focus on the a
 import org.sdf.danielsz.OAuth2Client;
 import org.sdf.danielsz.Token;
 
-OAuth2Client client = new OAuth2Client(username, password, app-id, app-secret, site);
+OAuth2Client client = new OAuth2Client("username", "password", "app-id", "app-secret", "site");
 Token token = client.getAccessToken();
 
 token.getResource(client, token, "/path/to/resource?name=value");
