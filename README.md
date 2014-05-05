@@ -15,7 +15,7 @@ Token token = client.getAccessToken();
 
 token.getResource(client, token, "/path/to/resource?name=value");
 ```
-With this grant type, the client application doesn't need to store the username/password of the user. Those credentials are asked once and are then exchanged for an access token.
+With this grant type, the client application doesn't need to store the username/password of the user. Those credentials are asked once and then exchanged for an access token.
 This token can be stored and used to both refresh itself and to access protected resources.
 When you attempt to access a resource with an expired token, a new token will automatically be generated based on the refresh token before the request is made. 
 
