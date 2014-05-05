@@ -24,6 +24,15 @@ To manually refresh a token:
 ```java
 Token newToken = oldToken.refresh(client);
 ```
+### Dependencies
+
++ commons-codec-1.6.jar
++ commons-logging-1.1.1.jar
++ httpclient-4.2.5.jar
++ httpclient-cache-4.2.5.jar
++ httpcore-4.2.4.jar
++ httpmime-4.2.5.jar
++ json-simple-1.1.1.jar
 
 ### Assumptions
 
@@ -33,6 +42,10 @@ Token newToken = oldToken.refresh(client);
 
 I welcome all contributions insofar as they remain in the realm of the resource owner password grant type. 
 
+### Acknowledgments
+
+The public API of this library was inspired by Ruby's OAuth2 [library](https://github.com/intridea/oauth2). 
+The IBM developerWorks [article](http://www.ibm.com/developerworks/security/library/se-oathjavapt1/index.html) on the subject of this particular grant type was very helpful, too.
 ## License
 
 This software is released as open source under the LGPLv3 license. If you need a commercial license for private forks and modifications, we will provide you with a custom URL to a privately hosted jar with a commercial-friendly license. Please mail me for further inquiries.
