@@ -15,9 +15,7 @@ Token token = client.getAccessToken();
 
 token.getResource(client, token, "/path/to/resource?name=value");
 ```
-With this grant type, the client application doesn't need to store the username/password of the user. Those credentials are asked once and then exchanged for an access token.
-This token can be stored and used to both refresh itself and to access protected resources.
-When you attempt to access a resource with an expired token, a new token will automatically be generated based on the refresh token before the request is made. 
+With this grant type, the client application doesn't need to store the username/password of the user. Those credentials are asked once and exchanged for an access token. This token can then be used to access protected resources. 
 
 To check if a token is expired:
 
@@ -25,11 +23,61 @@ To check if a token is expired:
 token.isExpired();
 ```
 
-To manually refresh a token:
+To refresh a token:
 
 ```java
 Token newToken = token.refresh(client);
 ```
+
+### Real-life example
+
+This example shows a fetch operation on a protected resource being repeated over time. If the token has expired, it is refreshed before the actual request is made. 
+
+```java
+
+import java.util.TimerTask;
+
+public class ProtectedResourceManager {
+
+	private static final OAuth2Client client = new OAuth2Client("username", "password", "app-id", "ap-secret", "site");
+	private Token token;
+
+	public Token getToken() {
+		return token;
+	}
+
+	public void setToken(Token token) {
+		this.token = token;
+	}
+
+	public ProtectedResourceManager(Token token) {
+		this.token = token;
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+
+		ProtectedResourceManager manager = new ProtectedResourceManager(client.getAccessToken());
+		MyTimerTask timer = manager.new MyTimerTask();
+		java.util.Timer t = new java.util.Timer();
+		t.schedule(timer, 5000, 1200000);
+	}
+
+	public static void fetch(OAuth2Client client, ProtectedResourceManager manager) {
+		Token token = manager.getToken();
+		if (token.isExpired()) manager.setToken(token.refresh(client));		
+		manager.getToken().getResource(client, manager.getToken(), "/api/resource?name=value");
+	}
+
+	class MyTimerTask extends TimerTask {
+
+		public void run() {
+			fetch(client, ProtectedResourceManager.this);
+		}
+	}
+}
+
+```
+
 
 ### Dependencies
 
