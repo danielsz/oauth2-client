@@ -2,7 +2,7 @@
 
 ## Rationale
 
-Java OAuth2 clients are plentiful. Oddly enough, they all seem to focus on the authorization code grant. This library aims to provide a solution for the resource owner password grant. 
+Java OAuth2 clients are plentiful. Oddly enough, they all seem to focus on the authorization code grant type. This library aims to provide a solution for the resource owner password grant type. 
 
 ## Usage
 
@@ -28,6 +28,10 @@ Token newToken = oldToken.refresh(client);
 ### Assumptions
 
 - Your OAuth server delivers access tokens bundled with refresh tokens.
+
+### Contributions
+
+I welcome all contributions insofar as they remain in the realm of the resource owner password grant type. 
 
 ## License
 
